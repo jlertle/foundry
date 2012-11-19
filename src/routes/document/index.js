@@ -3,7 +3,7 @@
 var models = require('../../models');
 
 // export route event handlers
-module.exports = function attachDocumentRoutes (router) {
+module.exports = function attachHandlers (router) {
     
     // get requests
     router.get('/document', listDocuments);

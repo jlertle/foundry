@@ -1,6 +1,6 @@
 
-// node modules
-var knox = require('knox');
+// local modules
+var utilities = require('../../utilities');
 
 // export document constructor
 var Document = module.exports = function Document (db) {
@@ -9,14 +9,14 @@ var Document = module.exports = function Document (db) {
     
 };
 
-Document.prototype.insert = function (document, callback) {
+Document.prototype.insert = function (query, callback) {
     
     // explicitly define document properties
     var properties = {
         
-        size: document.size,
-        name: document.name,
-        type: document.type
+        size: query.size,
+        name: query.name,
+        type: query.type
         
     };
     
@@ -26,6 +26,9 @@ Document.prototype.insert = function (document, callback) {
         // fail on error
         if (err || !document)
             return callback(new Error('failed to save document'));
+        
+        // queue imaging in sqs
+        utilities.documentToSQS(query.path, document);
         
         // callback on success
         return callback(null, document);
