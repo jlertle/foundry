@@ -1,4 +1,3 @@
-
 var sqs = require('sqs');
 
 exports.documentToSQS = function (path, document) {
@@ -6,8 +5,8 @@ exports.documentToSQS = function (path, document) {
     // init sqs client
     var queue = sqs({
         
-        access: 'AKIAILRXPMCEQRJ2YEBQ',
-        secret: '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',
+        access: '...',
+        secret: '...',
         region: 'us-west-1'
         
     });
